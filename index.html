@@ -44,6 +44,7 @@
     
   }
   .name{
+    
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     position: absolute;
     display: grid;
@@ -56,16 +57,18 @@
     font-size: large;
   }
   
- .ncell:hover{
-    color: #2e05f9;
-    padding: 4px;
-    border-radius: 30px;
-    box-shadow: 0 0 50px #f40303,
-                0 0 100px #f40303,
-                0 0 200px #f40303,
-                0 0 400px #f40303;
-                font-size: x-large;
-                
+ .ncell {
+    animation-iteration-count: infinite;
+  position: relative;
+  animation-name: key;
+  animation-duration: 10s;
+ }
+ @keyframes key {
+    0%   {left:0px; top:0px;}
+  25%  { left:200px; top:0px;}
+  50%  {left:10px; top:100px;}
+  75%  {left:-200px; top:0px;}
+  100% { left:0px; top:0px;}
  }
   </style>
   <title>Tic Tac Toe</title>
