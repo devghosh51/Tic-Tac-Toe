@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+  body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #8c9ef9;
+  }
+  
+  .board {
+   border-radius: 10%;
+    display: grid;
+    grid-template-columns: repeat(3, 110px);
+    grid-gap: 4px;
+    border: 4px solid #333;
+    background-color: #ecfb99;
+    
+  }
+  
+  .cell {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    border: 1px solid #f90505;
+    cursor: pointer;
+    border-radius: 30px;
+  }
+  .titel {
+    text-align: center;
+    font-size: x-large;
+    position: absolute;
+    top: 10px;
+    
+  }
+  .name{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    position: absolute;
+    display: grid;
+    top: 80vh;
+    left: 55vh;
+    padding: 3px;
+    border: 3px solid #f27a7a;
+    border-radius: 30px;
+    background: #99fbe2;
+    font-size: large;
+  }
+  
+ .ncell:hover{
+    color: #2e05f9;
+    padding: 4px;
+    border-radius: 30px;
+    box-shadow: 0 0 50px #f40303,
+                0 0 100px #f40303,
+                0 0 200px #f40303,
+                0 0 400px #f40303;
+                font-size: x-large;
+                
+ }
+  </style>
+  <title>Tic Tac Toe</title>
+</head>
+<body>
+    <div class="titel">
+        <h1><b id="tic">Tic Tac Toe</b></h1>
+    </div>
+  <div class="board" id="board">
+    <div class="cell" data-cell=""></div>
+    <div class="cell" data-cell=""></div>
+    <div class="cell" data-cell=""></div>
+    <div class="cell" data-cell=""></div>
+    <div class="cell" data-cell=""></div>
+    <div class="cell" data-cell=""></div>
+    <div class="cell" data-cell=""></div>
+    <div class="cell" data-cell=""></div>
+    <div class="cell" data-cell=""></div>
+  </div>
+  <div class="name">
+    <div class="ncell"> By Dev 🙂</div>
+  </div>
+  <script>
+    const board = document.getElementById("board");
+const cells = document.querySelectorAll("[data-cell]");
+let currentPlayer = "❌";
+
+cells.forEach(cell => {
+  cell.addEventListener("click", handleClick, { once: true });
+});
+
+function handleClick(e) {
+  const cell = e.target;
+  cell.textContent = currentPlayer;
+  cell.dataset.cell = currentPlayer;
+  if (checkWinner(currentPlayer)) {
+    alert(`${currentPlayer} wins!`);
+    restartGame();
+  } else if (isBoardFull()) {
+    alert("It's a draw!");
+    restartGame();
+  } else {
+    currentPlayer = currentPlayer === "❌" ? "🟢" : "❌";
+  }
+}
+
+function checkWinner(player) {
+  const winningCombos = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+    [0, 4, 8], [2, 4, 6]
+  ];
+  return winningCombos.some(combo => {
+    return combo.every(index => cells[index].dataset.cell === player);
+  });
+}
+
+function isBoardFull() {
+  return [...cells].every(cell => cell.dataset.cell !== "");
+}
+
+function restartGame() {
+  cells.forEach(cell => {
+    cell.textContent = "";
+    cell.dataset.cell = "";
+  });
+  currentPlayer = "❌";
+}
+
+  </script>
+</body>
+</html>
