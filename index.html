@@ -66,9 +66,14 @@
  @keyframes key {
     0%   {left:0px; top:0px;}
   25%  { left:200px; top:0px;}
-  50%  {left:10px; top:100px;}
+  50%  {left:0px; top:30px;}
   75%  {left:-200px; top:0px;}
   100% { left:0px; top:0px;}
+ }
+     .win{
+  position: fixed;
+  top: 69%;
+  right: 34%;
  }
    
   </style>
@@ -77,9 +82,6 @@
 <body>
     <div class="titel">
         <h1><b id="tic">Tic Tac Toe</b></h1>
-       <h4>
-        Refresh The Page After Win The Game
-    </h4>
     </div>
   <div class="board" id="board">
     <div class="cell" data-cell=""></div>
@@ -94,6 +96,11 @@
   </div>
   <div class="name">
     <div class="ncell"> By Dev 🙂</div>
+  </div>
+  <div>
+    <h4 class="win">
+      Refresh The Page After Win The Game
+  </h4>
   </div>
   
   <script>
